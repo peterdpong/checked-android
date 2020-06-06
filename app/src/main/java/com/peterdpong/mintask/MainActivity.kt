@@ -1,4 +1,4 @@
-package com.bignerdranch.android.mintask
+package com.peterdpong.mintask
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
