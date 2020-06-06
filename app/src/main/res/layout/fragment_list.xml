@@ -63,10 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/colorPrimary"
+            android:transitionName="list_to_detail"
+            app:backgroundTint="@color/mainBackground"
             app:srcCompat="@drawable/ic_plus"
-            app:tint="@color/colorAccent"
-            android:transitionName="list_to_detail"/>
+            app:tint="@color/colorAccent" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
