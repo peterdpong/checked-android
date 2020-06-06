@@ -1,0 +1,2 @@
+rootProject.name='MinTask'
+include ':app'
