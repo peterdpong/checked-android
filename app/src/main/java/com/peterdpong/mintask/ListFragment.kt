@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.Hold
-import com.google.android.material.transition.MaterialContainerTransform
-import com.peterdpong.mintask.tasksdetail.DetailFragment
+import com.peterdpong.mintask.tasksadd.AddFragment
 
 
 class ListFragment : Fragment() {
@@ -25,7 +22,7 @@ class ListFragment : Fragment() {
 
         fabButton = view.findViewById(R.id.floating_action_button)
         fabButton.setOnClickListener {
-            val fragment = DetailFragment()
+            val fragment = AddFragment()
             parentFragmentManager
                 .beginTransaction()
                 .addSharedElement(it, "list_to_detail")

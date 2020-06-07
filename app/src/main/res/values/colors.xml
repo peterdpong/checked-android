@@ -2,10 +2,15 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#C8C8C8</color>
-    <color name="colorAccent">#070707</color>
+    <color name="colorAccent">#1C1F27</color>
 
-    <color name="mainText">#2D313D</color>
-    <color name="altText">#8D8F97</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="mainText">#1C1F27</color>
+    <color name="altText">#2D323F</color>
 
     <color name="mainBackground">#FFFFFF</color>
+
+    //Cancel Red
+    <color name="cancelred">#ea5455</color>
 </resources>

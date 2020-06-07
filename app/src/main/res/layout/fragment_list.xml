@@ -12,42 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:fontFamily="@font/work_sans_bold"
+        android:fontFamily="@font/rubik_bold"
         android:text="@string/title"
         android:textColor="@color/mainText"
-        android:textSize="36sp"
+        android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:fontFamily="@font/work_sans"
+        android:fontFamily="@font/rubik_medium"
+        android:text="You have 2 tasks to do before tomorrow."
         android:textColor="@color/altText"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="You have X tasks to do within a day" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasks_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitle" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/tasks_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginRight="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/subtitle" />-->
 
     <!-- Floating Action Button -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -64,9 +64,9 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:transitionName="list_to_detail"
-            app:backgroundTint="@color/mainBackground"
+            app:backgroundTint="@color/colorAccent"
             app:srcCompat="@drawable/ic_plus"
-            app:tint="@color/colorAccent" />
+            app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

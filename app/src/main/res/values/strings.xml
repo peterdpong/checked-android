@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">MinTask</string>
+    <string name="app_name">Mintask</string>
 
-    <string name="title">Tasks</string>
+    <string name="title">Mintasks</string>
+    <string name="addtitle">Add Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+
 </resources>
