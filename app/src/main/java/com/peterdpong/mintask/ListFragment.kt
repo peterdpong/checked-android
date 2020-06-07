@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.Hold
-import com.peterdpong.mintask.tasksadd.AddFragment
+import com.peterdpong.mintask.addtasks.AddFragment
 
 
 class ListFragment : Fragment() {

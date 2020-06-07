@@ -2,7 +2,10 @@
     <string name="app_name">Mintask</string>
 
     <string name="title">Mintasks</string>
-    <string name="addtitle">Add Task</string>
+    <string name="addtitle">Add a new task</string>
+    <string name="tasktitle">Title</string>
+
+
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
 

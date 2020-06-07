@@ -1,6 +1,5 @@
-package com.peterdpong.mintask.tasksadd
+package com.peterdpong.mintask.addtasks
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
