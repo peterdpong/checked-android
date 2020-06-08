@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BottomAppBar" parent="Widget.MaterialComponents.BottomAppBar.Colored">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
 </resources>
