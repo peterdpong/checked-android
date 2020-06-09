@@ -5,6 +5,10 @@
     <string name="addtitle">Add a new task</string>
     <string name="tasktitle">Title</string>
 
+    <string name="titleHint">Task Title</string>
+    <string name="dateTitle">CHOOSE TASK DATE</string>
+    <string name="dateButton">Change Date</string>
+    <string name="descHint">Description</string>
 
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
