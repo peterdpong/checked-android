@@ -2,9 +2,11 @@ package com.peterdpong.mintask
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.peterdpong.mintask.edittask.EditFragment
 import com.peterdpong.mintask.listtasks.ListFragment
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,5 +22,14 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+    }
+
+    override fun onTaskSelect(taskId: UUID) {
+        val fragment = EditFragment.newInstance(taskId)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

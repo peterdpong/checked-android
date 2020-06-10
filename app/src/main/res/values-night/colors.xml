@@ -5,6 +5,7 @@
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="darkPrimary">#1C1F27</color>
 
     <color name="mainText">#FFFFFF</color>
     <color name="altText">#A9ABB3</color>

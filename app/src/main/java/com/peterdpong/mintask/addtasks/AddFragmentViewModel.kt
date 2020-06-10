@@ -1,12 +1,13 @@
-package com.peterdpong.mintask.listtasks
+package com.peterdpong.mintask.addtasks
 
 import androidx.lifecycle.ViewModel
 import com.peterdpong.mintask.TaskRepository
 import com.peterdpong.mintask.models.Task
 
-class ListFragmentViewModel: ViewModel() {
+class AddFragmentViewModel: ViewModel() {
     private val taskRepository = TaskRepository.get()
 
-    val taskList = taskRepository.getTasks()
-
+    fun addTask(task: Task){
+        taskRepository.addTask(task)
+    }
 }

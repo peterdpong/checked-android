@@ -1,5 +1,6 @@
 package com.peterdpong.mintask.listtasks
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +16,16 @@ import com.google.android.material.transition.Hold
 import com.peterdpong.mintask.R
 import com.peterdpong.mintask.addtasks.AddFragment
 import com.peterdpong.mintask.models.Task
+import java.util.*
 
 
 class ListFragment : Fragment() {
+
+    interface Callbacks {
+        fun onTaskSelect(taskId: UUID)
+    }
+
+    private var callbacks: Callbacks? = null
 
     private lateinit var fabButton: FloatingActionButton
     private lateinit var taskRecyclerView: RecyclerView
@@ -26,6 +34,12 @@ class ListFragment : Fragment() {
     private val taskListViewModel: ListFragmentViewModel by lazy {
         ViewModelProviders.of(this).get(ListFragmentViewModel::class.java)
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +51,7 @@ class ListFragment : Fragment() {
         taskRecyclerView.layoutManager = LinearLayoutManager(context)
         taskRecyclerView.adapter = adapter
 
+        //TODO Move to callback into mainactivity?
         fabButton = view.findViewById(R.id.floating_action_button)
         fabButton.setOnClickListener {
             val fragment = AddFragment()
@@ -66,6 +81,11 @@ class ListFragment : Fragment() {
         exitTransition = Hold()
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
+    }
+
     private fun updateList(tasks: List<Task>) {
         adapter = TaskAdapter(tasks)
         taskRecyclerView.adapter = adapter
@@ -92,12 +112,16 @@ class ListFragment : Fragment() {
 
 
     //TaskHolder for RecyclerView
-    private inner class TaskHolder(view: View): RecyclerView.ViewHolder(view){
+    private inner class TaskHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
         private lateinit var task: Task
 
         val taskTitleView: TextView = itemView.findViewById(R.id.task_title)
         val dateTextView: TextView = itemView.findViewById(R.id.task_date)
         val priorityTextView: TextView = itemView.findViewById(R.id.task_priority)
+
+        init{
+            itemView.setOnClickListener(this)
+        }
 
         fun onBind(task: Task){
             this.task = task
@@ -105,6 +129,11 @@ class ListFragment : Fragment() {
             dateTextView.text = this.task.dueDate.toString()
             priorityTextView.text = this.task.priorty
         }
+
+        override fun onClick(v: View?) {
+            callbacks?.onTaskSelect(task.id)
+        }
+
     }
 
 }

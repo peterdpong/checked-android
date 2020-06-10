@@ -9,14 +9,14 @@
     tools:context=".addtasks.AddFragment">
 
     <TextView
-        android:id="@+id/addtitle"
+        android:id="@+id/edittitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/rubik_bold"
-        android:text="@string/addtitle"
+        android:text="@string/edittitle"
         android:textColor="@color/mainText"
         android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,7 +34,7 @@
         android:hint="@string/titleHint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addtitle"
+        app:layout_constraintTop_toBottomOf="@id/edittitle"
 
         app:boxBackgroundColor="@color/mainBackground"
         android:textColorHint="@color/mainText"
@@ -42,6 +42,7 @@
         app:boxStrokeColor="@color/mainText">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"/>
@@ -55,7 +56,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/rubik_medium"
-        android:text="@string/dateTitle"
+        android:text="@string/editdatetitle"
         android:textColor="@color/mainText"
         app:layout_constraintBottom_toTopOf="@id/taskDate"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -111,6 +112,7 @@
         app:layout_constraintTop_toBottomOf="@id/taskDate">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
