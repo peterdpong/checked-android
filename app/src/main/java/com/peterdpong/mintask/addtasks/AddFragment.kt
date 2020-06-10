@@ -37,6 +37,7 @@ class AddFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add, container, false)
 
         task = Task()
+        saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
 
         return view
@@ -53,6 +54,8 @@ class AddFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+
 
         saveButton.setOnClickListener {
             addFragmentViewModel.addTask(task)

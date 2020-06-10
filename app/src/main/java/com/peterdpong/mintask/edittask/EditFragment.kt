@@ -46,7 +46,7 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
 
         titleInput = view.findViewById(R.id.titleTextInput)
         descInput = view.findViewById(R.id.descTextInput)
-        dateTextView = view.findViewById(R.id.task_date)
+        dateTextView = view.findViewById(R.id.taskDate)
         dateButton = view.findViewById(R.id.dateButton)
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
