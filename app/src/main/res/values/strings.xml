@@ -16,4 +16,6 @@
     <string name="edittitle">Edit this task</string>
     <string name="editdatetitle">TASK DATE</string>
 
+    <string name="overview">You have %s tasks to finish.</string>
+
 </resources>

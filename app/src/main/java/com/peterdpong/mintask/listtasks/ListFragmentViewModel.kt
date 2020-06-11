@@ -9,6 +9,8 @@ class ListFragmentViewModel: ViewModel() {
 
     val taskList = taskRepository.getTasks()
 
+    var taskListSize = taskRepository.getCount()
+
     fun deleteItem(task: Task){
         taskRepository.deleteTask(task)
     }

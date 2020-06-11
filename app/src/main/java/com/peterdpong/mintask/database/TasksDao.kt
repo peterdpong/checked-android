@@ -13,6 +13,9 @@ interface TasksDao {
     @Query("SELECT * FROM task WHERE id=(:id)")
     fun getTaskFromId(id: UUID): LiveData<Task?>
 
+    @Query("SELECT COUNT(*) FROM task")
+    fun getCount(): LiveData<Int>
+
     @Update
     fun updateTask(task: Task)
 

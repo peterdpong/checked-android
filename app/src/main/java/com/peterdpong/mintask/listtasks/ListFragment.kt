@@ -18,6 +18,7 @@ import com.peterdpong.mintask.R
 import com.peterdpong.mintask.addtasks.AddFragment
 import com.peterdpong.mintask.models.Task
 import android.text.format.DateFormat
+import android.util.Log
 import android.widget.CheckBox
 import java.util.*
 
@@ -33,6 +34,7 @@ class ListFragment : Fragment() {
 
     private lateinit var fabButton: FloatingActionButton
     private lateinit var taskRecyclerView: RecyclerView
+    private lateinit var subTitle: TextView
     private var adapter: TaskAdapter? = TaskAdapter(emptyList())
 
     private val taskListViewModel: ListFragmentViewModel by lazy {
@@ -54,6 +56,8 @@ class ListFragment : Fragment() {
         taskRecyclerView = view.findViewById(R.id.tasks_list)
         taskRecyclerView.layoutManager = LinearLayoutManager(context)
         taskRecyclerView.adapter = adapter
+
+        subTitle = view.findViewById(R.id.subtitle)
 
         //TODO Move to callback into mainactivity?
         fabButton = view.findViewById(R.id.floating_action_button)
@@ -78,6 +82,13 @@ class ListFragment : Fragment() {
             tasks?.let {
                 updateList(tasks)
             }})
+
+
+        taskListViewModel.taskListSize.observe(viewLifecycleOwner,
+        Observer { taskCount ->
+            updateOverview(taskCount)
+        })
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,6 +103,10 @@ class ListFragment : Fragment() {
 
     private fun updateList(tasks: List<Task>) {
         adapter?.submitList(tasks)
+    }
+
+    private fun updateOverview(listSize: Int) {
+        subTitle.setText(getString(R.string.overview, listSize.toString()))
     }
 
 
@@ -130,6 +145,7 @@ class ListFragment : Fragment() {
             taskTitleView.text = this.task.title
             dateTextView.text = DateFormat.format(DATE_FORMAT, this.task.dueDate)
             priorityTextView.text = this.task.priorty
+            //TODO BUG WITH ANIMATION BACK FOR OTHER ITEMS
             itemView.transitionName = task.id.toString()
         }
 
