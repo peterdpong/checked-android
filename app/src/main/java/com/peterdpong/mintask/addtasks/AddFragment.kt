@@ -1,6 +1,8 @@
 package com.peterdpong.mintask.addtasks
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +12,17 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
+import com.peterdpong.mintask.DatePickerFragment
 
 import com.peterdpong.mintask.R
 import com.peterdpong.mintask.models.Task
+import java.util.*
+
+private const val DIALOG_DATE = "DateDialog"
+private const val RETURN_DATE = 0
 
 
-class AddFragment : Fragment() {
+class AddFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private lateinit var task: Task
 
@@ -39,6 +46,10 @@ class AddFragment : Fragment() {
         task = Task()
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
+        dateButton = view.findViewById(R.id.dateButton)
+        dateTextView = view.findViewById(R.id.taskDate)
+        titleInput = view.findViewById(R.id.titleTextInput)
+        descInput = view.findViewById(R.id.descTextInput)
 
         return view
     }
@@ -48,14 +59,50 @@ class AddFragment : Fragment() {
         sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply{
             pathMotion = MaterialArcMotion()
             fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-            duration = 425
+            duration = 375
         }
     }
 
     override fun onStart() {
         super.onStart()
 
+        val titleWatcher = object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                //Intentionally Left Blank
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //Intentionally Left Blank
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                task.title = s.toString()
+            }
+        }
+
+        val descWatcher = object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                //Intentionally Left Blank
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //Intentionally Left Blank
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                task.desc = s.toString()
+            }
+        }
+
+        titleInput.addTextChangedListener(titleWatcher)
+        descInput.addTextChangedListener(descWatcher)
+
+        dateButton.setOnClickListener{
+            DatePickerFragment.newInstance(task.dueDate).apply {
+                setTargetFragment(this@AddFragment, RETURN_DATE)
+                show(this@AddFragment.requireFragmentManager(), DIALOG_DATE)
+            }
+        }
 
         saveButton.setOnClickListener {
             addFragmentViewModel.addTask(task)
@@ -65,6 +112,17 @@ class AddFragment : Fragment() {
         cancelButton.setOnClickListener{
             parentFragmentManager.popBackStack()
         }
+    }
+
+    override fun onDateSelected(date: Date) {
+        task.dueDate = date
+        updateUI()
+    }
+
+    private fun updateUI() {
+        titleInput.setText(task.title)
+        descInput.setText(task.desc)
+        dateTextView.setText(task.dueDate.toString())
     }
 
 }

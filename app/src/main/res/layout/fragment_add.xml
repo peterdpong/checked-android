@@ -42,6 +42,7 @@
         app:boxStrokeColor="@color/mainText">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"/>
@@ -72,8 +73,7 @@
         android:textColor="@color/mainText"
         app:layout_constraintBottom_toTopOf="@id/descTextField"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taskDateTitle"
-        android:text="JUNE 9th, 2020" />
+        app:layout_constraintTop_toBottomOf="@id/taskDateTitle" />
 
     <Button
         android:id="@+id/dateButton"
@@ -111,6 +111,7 @@
         app:layout_constraintTop_toBottomOf="@id/taskDate">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
