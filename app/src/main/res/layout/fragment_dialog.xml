@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/settings"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="30dp"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="@color/mainText"
+        android:drawableStart="@drawable/ic_settings"
+        android:drawableTint="@color/mainText"
+        android:drawablePadding="10dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/github_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/github"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="30dp"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="@color/mainText"
+        android:drawableStart="@drawable/ic_code"
+        android:drawableTint="@color/mainText"
+        android:drawablePadding="10dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/version"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="30dp"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="@color/altText"/>
+
+</LinearLayout>

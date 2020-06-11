@@ -20,6 +20,9 @@ import com.peterdpong.mintask.models.Task
 import android.text.format.DateFormat
 import android.util.Log
 import android.widget.CheckBox
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.fragment_list.*
 import java.util.*
 
 const val DATE_FORMAT = "EEEE, MMM, dd, yyyy"
@@ -31,7 +34,6 @@ class ListFragment : Fragment() {
     }
 
     private var callbacks: Callbacks? = null
-
     private lateinit var fabButton: FloatingActionButton
     private lateinit var taskRecyclerView: RecyclerView
     private lateinit var subTitle: TextView
@@ -77,6 +79,14 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = (requireActivity() as AppCompatActivity)
+        activity.setSupportActionBar(bottomAppBar)
+
+        bottomAppBar.setNavigationOnClickListener {
+            val bottomSheet = NavigationBottomDialogFragment()
+            bottomSheet.show(parentFragmentManager, "TAG")
+        }
+
         taskListViewModel.taskList.observe(viewLifecycleOwner,
             Observer { tasks ->
             tasks?.let {
@@ -94,6 +104,7 @@ class ListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exitTransition = Hold()
+        setHasOptionsMenu(true)
     }
 
     override fun onDetach() {

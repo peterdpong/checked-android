@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Future home of Settings: Coming Soon">
+
+    </PreferenceCategory>
+
+    <Preference
+        android:selectable="false"
+        android:enabled="true"
+        android:key="version_key"
+        android:title="Current Version"
+        android:summary="Beta 0.1" />
+
+</PreferenceScreen>
