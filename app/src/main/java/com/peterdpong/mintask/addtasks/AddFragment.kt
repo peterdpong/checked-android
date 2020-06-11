@@ -13,18 +13,19 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import com.peterdpong.mintask.DatePickerFragment
+import android.text.format.DateFormat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.snackbar.Snackbar
 
 import com.peterdpong.mintask.R
-import com.peterdpong.mintask.models.Task
+import com.peterdpong.mintask.listtasks.DATE_FORMAT
 import java.util.*
 
 private const val DIALOG_DATE = "DateDialog"
 private const val RETURN_DATE = 0
-
+private const val NO_TITLE_TEXT = "Add a task title to save."
 
 class AddFragment : Fragment(), DatePickerFragment.Callbacks {
-
-    private lateinit var task: Task
 
     private lateinit var titleInput: com.google.android.material.textfield.TextInputEditText
     private lateinit var descInput: com.google.android.material.textfield.TextInputEditText
@@ -32,6 +33,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var dateButton: Button
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
+    private lateinit var addTaskLayout: ConstraintLayout
 
     private val addFragmentViewModel: AddFragmentViewModel by lazy {
         ViewModelProviders.of(this).get(AddFragmentViewModel::class.java)
@@ -43,13 +45,13 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add, container, false)
 
-        task = Task()
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
         dateButton = view.findViewById(R.id.dateButton)
         dateTextView = view.findViewById(R.id.taskDate)
         titleInput = view.findViewById(R.id.titleTextInput)
         descInput = view.findViewById(R.id.descTextInput)
+        addTaskLayout = view.findViewById(R.id.addtasklayout)
 
         return view
     }
@@ -65,6 +67,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
 
     override fun onStart() {
         super.onStart()
+        updateUI()
 
         val titleWatcher = object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -76,7 +79,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                task.title = s.toString()
+                addFragmentViewModel.currentTask.title = s.toString()
             }
         }
 
@@ -90,7 +93,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                task.desc = s.toString()
+                addFragmentViewModel.currentTask.desc = s.toString()
             }
         }
 
@@ -98,15 +101,20 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         descInput.addTextChangedListener(descWatcher)
 
         dateButton.setOnClickListener{
-            DatePickerFragment.newInstance(task.dueDate).apply {
+            DatePickerFragment.newInstance(addFragmentViewModel.currentTask.dueDate).apply {
                 setTargetFragment(this@AddFragment, RETURN_DATE)
                 show(this@AddFragment.requireFragmentManager(), DIALOG_DATE)
             }
         }
 
         saveButton.setOnClickListener {
-            addFragmentViewModel.addTask(task)
-            parentFragmentManager.popBackStack()
+            if(addFragmentViewModel.currentTask.title.isEmpty()){
+                Snackbar.make(addTaskLayout, NO_TITLE_TEXT, Snackbar.LENGTH_SHORT)
+                .show()
+            }else{
+                addFragmentViewModel.addTask(addFragmentViewModel.currentTask)
+                parentFragmentManager.popBackStack()
+            }
         }
 
         cancelButton.setOnClickListener{
@@ -115,14 +123,14 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     }
 
     override fun onDateSelected(date: Date) {
-        task.dueDate = date
+        addFragmentViewModel.currentTask.dueDate = date
         updateUI()
     }
 
     private fun updateUI() {
-        titleInput.setText(task.title)
-        descInput.setText(task.desc)
-        dateTextView.setText(task.dueDate.toString())
+        titleInput.setText(addFragmentViewModel.currentTask.title)
+        descInput.setText(addFragmentViewModel.currentTask.desc)
+        dateTextView.setText(DateFormat.format(DATE_FORMAT, addFragmentViewModel.currentTask.dueDate))
     }
 
 }

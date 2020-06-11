@@ -12,14 +12,21 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.Observer
 import com.peterdpong.mintask.DatePickerFragment
+import android.text.format.DateFormat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 
 import com.peterdpong.mintask.R
+import com.peterdpong.mintask.listtasks.DATE_FORMAT
 import com.peterdpong.mintask.models.Task
 import java.util.*
 
 private const val ARG_TASK_ID = "task_id"
 private const val DIALOG_DATE = "DateDialog"
 private const val RETURN_DATE = 0
+private const val NO_TITLE_TEXT = "Add a task title to save."
 
 class EditFragment : Fragment(), DatePickerFragment.Callbacks {
 
@@ -31,6 +38,7 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var dateButton: Button
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
+    private lateinit var editTaskLayout: ConstraintLayout
 
 
     private val editFragmentViewModel: EditFragmentViewModel by lazy {
@@ -50,15 +58,23 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
         dateButton = view.findViewById(R.id.dateButton)
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
+        editTaskLayout = view.findViewById(R.id.edittasklayout)
+
+        task = Task()
+        val taskId: UUID = arguments?.getSerializable(ARG_TASK_ID) as UUID
+        editFragmentViewModel.loadTask(taskId)
+        editTaskLayout.transitionName = taskId.toString()
 
         return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        task = Task()
-        val taskId: UUID = arguments?.getSerializable(ARG_TASK_ID) as UUID
-        editFragmentViewModel.loadTask(taskId)
+
+        sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply{
+            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
+            duration = 375
+        }
 
     }
 
@@ -115,6 +131,11 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
         }
 
         saveButton.setOnClickListener {
+            if(task.title.isEmpty()){
+                Snackbar.make(editTaskLayout, NO_TITLE_TEXT, Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+
             editFragmentViewModel.saveTask(task)
             parentFragmentManager.popBackStack()
         }
@@ -132,7 +153,7 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
     private fun updateUI() {
         titleInput.setText(task.title)
         descInput.setText(task.desc)
-        dateTextView.setText(task.dueDate.toString())
+        dateTextView.setText(DateFormat.format(DATE_FORMAT, task.dueDate))
     }
 
     companion object{

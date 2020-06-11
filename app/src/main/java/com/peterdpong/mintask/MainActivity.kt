@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity(), ListFragment.Callbacks {
         val fragment = EditFragment.newInstance(taskId)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, fragment)
+            .addSharedElement(findViewById(R.id.taskItemLayout), taskId.toString())
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }

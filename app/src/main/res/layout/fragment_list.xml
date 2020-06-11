@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"
-            android:transitionName="list_to_detail"
+            android:transitionName="list_to_add"
             app:backgroundTint="@color/mainText"
             app:srcCompat="@drawable/ic_plus"
             app:tint="@color/mainBackground" />

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/edittasklayout"
     android:background="@color/mainBackground"
-    android:transitionName="list_to_detail"
     tools:context=".addtasks.AddFragment">
 
     <TextView

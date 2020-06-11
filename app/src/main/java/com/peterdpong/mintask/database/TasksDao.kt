@@ -1,10 +1,7 @@
 package com.peterdpong.mintask.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.peterdpong.mintask.models.Task
 import java.util.*
 
@@ -22,5 +19,7 @@ interface TasksDao {
     @Insert
     fun addTask(task: Task)
 
+    @Delete
+    fun deleteTask(task: Task)
 
 }

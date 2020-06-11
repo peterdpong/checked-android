@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,8 +17,11 @@ import com.google.android.material.transition.Hold
 import com.peterdpong.mintask.R
 import com.peterdpong.mintask.addtasks.AddFragment
 import com.peterdpong.mintask.models.Task
+import android.text.format.DateFormat
+import android.widget.CheckBox
 import java.util.*
 
+const val DATE_FORMAT = "EEEE, MMM, dd, yyyy"
 
 class ListFragment : Fragment() {
 
@@ -57,7 +61,7 @@ class ListFragment : Fragment() {
             val fragment = AddFragment()
             parentFragmentManager
                 .beginTransaction()
-                .addSharedElement(it, "list_to_detail")
+                .addSharedElement(it, "list_to_add")
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
@@ -87,21 +91,15 @@ class ListFragment : Fragment() {
     }
 
     private fun updateList(tasks: List<Task>) {
-        adapter = TaskAdapter(tasks)
-        taskRecyclerView.adapter = adapter
+        adapter?.submitList(tasks)
     }
 
 
     //TaskAdapter for RecyclerView
-    private inner class TaskAdapter(var tasks: List<Task>): RecyclerView.Adapter<TaskHolder>(){
-        override fun getItemCount(): Int {
-            return tasks.size
-        }
-
+    private inner class TaskAdapter(var tasks: List<Task>): androidx.recyclerview.widget.ListAdapter<Task, TaskHolder>(TaskDiffCallback()){
         override fun onBindViewHolder(holder: TaskHolder, position: Int) {
-            val task = tasks[position]
+            val task = getItem(position)
             holder.onBind(task)
-
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskHolder {
@@ -118,20 +116,36 @@ class ListFragment : Fragment() {
         val taskTitleView: TextView = itemView.findViewById(R.id.task_title)
         val dateTextView: TextView = itemView.findViewById(R.id.task_date)
         val priorityTextView: TextView = itemView.findViewById(R.id.task_priority)
+        val taskCheckBox: CheckBox = itemView.findViewById(R.id.task_checkbox)
 
         init{
             itemView.setOnClickListener(this)
+            taskCheckBox.setOnClickListener {
+                taskListViewModel.deleteItem(task)
+            }
         }
 
         fun onBind(task: Task){
             this.task = task
             taskTitleView.text = this.task.title
-            dateTextView.text = this.task.dueDate.toString()
+            dateTextView.text = DateFormat.format(DATE_FORMAT, this.task.dueDate)
             priorityTextView.text = this.task.priorty
+            itemView.transitionName = task.id.toString()
         }
 
         override fun onClick(v: View?) {
             callbacks?.onTaskSelect(task.id)
+        }
+
+    }
+
+    class TaskDiffCallback: DiffUtil.ItemCallback<Task>() {
+        override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
+            return oldItem.id == newItem.id
         }
 
     }
