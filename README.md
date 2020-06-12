@@ -4,10 +4,11 @@
  
 Screenshots
 ---
-<img src="src/Screenshots/ListScreen.png" width="270" alt="List/Home Screen">
-<img src="src/Screenshots/DarkMode.png" width="270" alt="List/Home Screen">
-<img src="src/Screenshots/AddTask.png" width="270" alt="List/Home Screen">
-
+<p align="center">
+  <img src="src/Screenshots/ListScreen.png" width="270" alt="List/Home Screen">
+  <img src="src/Screenshots/DarkMode.png" width="270" alt="List/Home Screen">
+  <img src="src/Screenshots/AddTask.png" width="270" alt="List/Home Screen">
+</p>
 
 
 Current Features
