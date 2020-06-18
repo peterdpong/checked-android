@@ -36,7 +36,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addtitle"
-
         app:boxBackgroundColor="@color/mainBackground"
         android:textColorHint="@color/mainText"
         app:hintTextColor="@color/mainText"
@@ -46,53 +45,58 @@
             android:id="@+id/titleTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autoText="true"
             android:maxLines="1"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/taskDateTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/rubik_medium"
         android:text="@string/dateTitle"
         android:textColor="@color/mainText"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/ic_date"
+        android:drawableTint="@color/mainText"
+        android:drawablePadding="10dp"
         app:layout_constraintBottom_toTopOf="@id/taskDate"
+        app:layout_constraintTop_toBottomOf="@id/titleTextField"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextField" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/taskDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/rubik_medium"
+        android:padding="8dp"
+        android:fontFamily="@font/rubik_bold"
         android:textColor="@color/mainText"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintBottom_toTopOf="@id/descTextField"
+        app:layout_constraintTop_toBottomOf="@id/taskDateTitle"
+        app:layout_constraintRight_toLeftOf="@id/notificationButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taskDateTitle" />
+        tools:text="JUNE 9th, 2020" />
 
-    <Button
-        android:id="@+id/dateButton"
+    <ImageButton
+        android:id="@+id/notificationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/dateButton"
-        app:icon="@drawable/ic_date"
-        app:iconTint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:backgroundTint="@color/darkPrimary"
-        android:fontFamily="@font/rubik_bold"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/mainBackground"
+        android:tint="@color/mainText"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextField"
-        app:layout_constraintBottom_toTopOf="@id/descTextField"/>
+        app:layout_constraintBottom_toTopOf="@id/descTextField"
+        android:src="@drawable/ic_notifications_none"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/descTextField"
@@ -114,11 +118,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descTextInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autoText="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
     <Button

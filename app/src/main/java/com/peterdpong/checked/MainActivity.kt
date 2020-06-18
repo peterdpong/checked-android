@@ -2,6 +2,7 @@ package com.peterdpong.checked
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.peterdpong.checked.edittask.EditFragment
 import com.peterdpong.checked.listtasks.ListFragment
 import java.util.*
@@ -24,11 +25,11 @@ class MainActivity : AppCompatActivity(), ListFragment.Callbacks {
 
     }
 
-    override fun onTaskSelect(taskId: UUID) {
+    override fun onTaskSelect(view: View?, taskId: UUID) {
         val fragment = EditFragment.newInstance(taskId)
         supportFragmentManager
             .beginTransaction()
-            .addSharedElement(findViewById(R.id.taskItemLayout), taskId.toString())
+            .addSharedElement(view!!, taskId.toString())
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()

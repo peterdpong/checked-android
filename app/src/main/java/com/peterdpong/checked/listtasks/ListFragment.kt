@@ -28,7 +28,7 @@ const val DATE_FORMAT = "EEEE, MMM, dd, yyyy"
 class ListFragment : Fragment() {
 
     interface Callbacks {
-        fun onTaskSelect(taskId: UUID)
+        fun onTaskSelect(view: View?, taskId: UUID)
     }
 
     private var callbacks: Callbacks? = null
@@ -158,12 +158,11 @@ class ListFragment : Fragment() {
             taskTitleView.text = this.task.title
             dateTextView.text = DateFormat.format(DATE_FORMAT, this.task.dueDate)
             priorityTextView.text = this.task.priorty
-            //TODO BUG WITH ANIMATION BACK FOR OTHER ITEMS
             itemView.transitionName = task.id.toString()
         }
 
         override fun onClick(v: View?) {
-            callbacks?.onTaskSelect(task.id)
+            callbacks?.onTaskSelect(v, task.id)
         }
 
     }

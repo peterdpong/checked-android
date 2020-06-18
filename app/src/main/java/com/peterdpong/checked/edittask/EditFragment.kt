@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.Observer
 import com.peterdpong.checked.DatePickerFragment
 import android.text.format.DateFormat
+import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
@@ -34,9 +35,9 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var titleInput: com.google.android.material.textfield.TextInputEditText
     private lateinit var descInput: com.google.android.material.textfield.TextInputEditText
     private lateinit var dateTextView: TextView
-    private lateinit var dateButton: Button
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
+    private lateinit var notificationButton: ImageButton
     private lateinit var editTaskLayout: ConstraintLayout
 
 
@@ -54,9 +55,9 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput = view.findViewById(R.id.titleTextInput)
         descInput = view.findViewById(R.id.descTextInput)
         dateTextView = view.findViewById(R.id.taskDate)
-        dateButton = view.findViewById(R.id.dateButton)
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
+        notificationButton = view.findViewById(R.id.notificationButton)
         editTaskLayout = view.findViewById(R.id.edittasklayout)
 
         task = Task()
@@ -122,7 +123,7 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput.addTextChangedListener(titleWatcher)
         descInput.addTextChangedListener(descWatcher)
 
-        dateButton.setOnClickListener{
+        dateTextView.setOnClickListener{
             DatePickerFragment.newInstance(task.dueDate).apply {
                 setTargetFragment(this@EditFragment, RETURN_DATE)
                 show(this@EditFragment.requireFragmentManager(), DIALOG_DATE)

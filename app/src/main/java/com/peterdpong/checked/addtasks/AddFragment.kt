@@ -14,6 +14,8 @@ import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import com.peterdpong.checked.DatePickerFragment
 import android.text.format.DateFormat
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.Snackbar
 
@@ -30,9 +32,9 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var titleInput: com.google.android.material.textfield.TextInputEditText
     private lateinit var descInput: com.google.android.material.textfield.TextInputEditText
     private lateinit var dateTextView: TextView
-    private lateinit var dateButton: Button
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
+    private lateinit var notificationButton: ImageButton
     private lateinit var addTaskLayout: ConstraintLayout
 
     private val addFragmentViewModel: AddFragmentViewModel by lazy {
@@ -47,10 +49,10 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
 
         saveButton = view.findViewById(R.id.savebtn)
         cancelButton = view.findViewById(R.id.cancelbtn)
-        dateButton = view.findViewById(R.id.dateButton)
         dateTextView = view.findViewById(R.id.taskDate)
         titleInput = view.findViewById(R.id.titleTextInput)
         descInput = view.findViewById(R.id.descTextInput)
+        notificationButton = view.findViewById(R.id.notificationButton)
         addTaskLayout = view.findViewById(R.id.addtasklayout)
 
         return view
@@ -100,7 +102,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput.addTextChangedListener(titleWatcher)
         descInput.addTextChangedListener(descWatcher)
 
-        dateButton.setOnClickListener{
+        dateTextView.setOnClickListener{
             DatePickerFragment.newInstance(addFragmentViewModel.currentTask.dueDate).apply {
                 setTargetFragment(this@AddFragment, RETURN_DATE)
                 show(this@AddFragment.requireFragmentManager(), DIALOG_DATE)
@@ -120,6 +122,7 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         cancelButton.setOnClickListener{
             parentFragmentManager.popBackStack()
         }
+
     }
 
     override fun onDateSelected(date: Date) {
