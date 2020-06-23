@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.peterdpong.checked.database.TasksDao
 import com.peterdpong.checked.database.TasksDatabase
+import com.peterdpong.checked.database.migration_1_2
 import com.peterdpong.checked.models.Task
 import java.util.*
 import java.util.concurrent.Executors
@@ -18,7 +19,8 @@ class TaskRepository private constructor(context: Context){
         context.applicationContext,
         TasksDatabase::class.java,
         DATABASE_NAME
-    ).build()
+    ).addMigrations(migration_1_2)
+        .build()
 
     private val taskDao: TasksDao = database.tasksDao()
     private val executor = Executors.newSingleThreadExecutor()

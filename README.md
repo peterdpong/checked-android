@@ -35,7 +35,7 @@ Planned Features
 Known Issues
 ---
 To report issues, please email me at peterdpongdev@gmail.com or add an issue to this github page.
-* Edit task animation on close (doesn't affect first recyclerview item)
+* Edit task animation on close (Fixed in Beta 0.2)
 
 
 Help with Translating

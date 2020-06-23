@@ -11,12 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.peterdpong.checked.settings.SettingsActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:name="com.peterdpong.checked.settings.SettingsActivity" />
         <activity
             android:name="com.peterdpong.checked.MainActivity"
-            android:configChanges="uiMode"
-            android:windowSoftInputMode="adjustResize">
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

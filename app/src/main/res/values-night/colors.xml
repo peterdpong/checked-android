@@ -12,6 +12,6 @@
 
     <color name="mainBackground">#2D323F</color>
 
-    //Cancel Red
     <color name="cancelred">#ea5455</color>
+    <color name="mainGreen">#3DDC84</color>
 </resources>

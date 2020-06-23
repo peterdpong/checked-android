@@ -61,9 +61,8 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply{
-            pathMotion = MaterialArcMotion()
             fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-            duration = 375
+            duration = 350
         }
     }
 
