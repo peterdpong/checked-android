@@ -20,5 +20,8 @@ val migration_1_2 = object: Migration(1, 2){
         database.execSQL(
             "ALTER TABLE Task ADD COLUMN notification INTEGER NOT NULL DEFAULT 'false'"
         )
+        database.execSQL(
+            "ALTER TABLE Task ADD COLUMN notificationID TEXT NOT NULL DEFAULT ''"
+        )
     }
 }

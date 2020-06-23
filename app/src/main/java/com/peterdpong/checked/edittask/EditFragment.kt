@@ -15,6 +15,7 @@ import com.peterdpong.checked.DatePickerFragment
 import android.text.format.DateFormat
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 
@@ -127,6 +128,25 @@ class EditFragment : Fragment(), DatePickerFragment.Callbacks {
             DatePickerFragment.newInstance(task.dueDate).apply {
                 setTargetFragment(this@EditFragment, RETURN_DATE)
                 show(this@EditFragment.requireFragmentManager(), DIALOG_DATE)
+            }
+        }
+
+        notificationButton.setOnClickListener{
+            task.notification = !task.notification
+            if(task.notification){
+                notificationButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_notifications
+                    )
+                )
+            }else{
+                notificationButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_notifications_none
+                    )
+                )
             }
         }
 

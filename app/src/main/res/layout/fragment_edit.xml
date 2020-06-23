@@ -79,7 +79,7 @@
         android:textColor="@color/mainText"
         android:clickable="true"
         android:background="?attr/selectableItemBackground"
-        app:layout_constraintBottom_toTopOf="@id/descTextField"
+        app:layout_constraintBottom_toTopOf="@id/priorityTitle"
         app:layout_constraintTop_toBottomOf="@id/taskDateTitle"
         app:layout_constraintRight_toLeftOf="@id/notificationButton"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -94,8 +94,53 @@
         android:tint="@color/mainText"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextField"
-        app:layout_constraintBottom_toTopOf="@id/descTextField"
+        app:layout_constraintBottom_toTopOf="@id/priorityTitle"
         android:src="@drawable/ic_notifications_none"/>
+
+    <TextView
+        android:id="@+id/priorityTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/rubik_medium"
+        android:text="@string/priorityTitle"
+        android:textColor="@color/mainText"
+        android:gravity="center_vertical"
+        android:drawableTint="@color/mainText"
+        android:drawablePadding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/prioritySelect"
+        app:layout_constraintTop_toBottomOf="@id/taskDate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/prioritySelect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:fontFamily="@font/rubik_bold"
+        android:textColor="@color/mainText"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/priorityIndicator"
+        app:layout_constraintTop_toBottomOf="@id/priorityTitle"
+        app:layout_constraintBottom_toTopOf="@id/descTextField"
+        tools:text="Low"/>
+
+    <ImageView
+        android:id="@+id/priorityIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@id/descTextField"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taskDate"
+        tools:src="@drawable/ic_prio_low" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +158,7 @@
         app:hintTextColor="@color/mainText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taskDate">
+        app:layout_constraintTop_toBottomOf="@id/prioritySelect">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descTextInput"

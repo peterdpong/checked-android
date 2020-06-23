@@ -57,17 +57,17 @@
         android:background="?attr/selectableItemBackground"/>
 
     <TextView
-        android:id="@+id/github_button"
+        android:id="@+id/privacy_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:text="@string/github"
+        android:text="@string/privacy"
         android:paddingTop="25dp"
         android:paddingBottom="25dp"
         android:paddingLeft="20dp"
         android:fontFamily="@font/rubik_medium"
         android:textColor="@color/mainText"
-        android:drawableStart="@drawable/ic_code"
+        android:drawableStart="@drawable/ic_privacy"
         android:drawableTint="@color/mainText"
         android:drawablePadding="10dp"
         android:clickable="true"

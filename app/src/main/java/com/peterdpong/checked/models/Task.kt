@@ -11,4 +11,5 @@ data class Task(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var desc: String = "",
                 var dueDate: Date = Date(),
                 var priorty: String = "",
-                var notification: Boolean = false)
+                var notification: Boolean = false,
+                var notificationID: String = "")

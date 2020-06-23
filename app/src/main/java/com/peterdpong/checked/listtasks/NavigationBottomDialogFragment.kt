@@ -14,7 +14,7 @@ import com.peterdpong.checked.settings.SettingsActivity
 class NavigationBottomDialogFragment: BottomSheetDialogFragment() {
 
     private lateinit var settingsButton: TextView
-    private lateinit var githubButton: TextView
+    private lateinit var privacyButton: TextView
     private lateinit var bugsButton: TextView
     private lateinit var translateButton: TextView
 
@@ -26,7 +26,7 @@ class NavigationBottomDialogFragment: BottomSheetDialogFragment() {
         val view = inflater.inflate(R.layout.fragment_dialog, container, false)
 
         settingsButton = view.findViewById(R.id.settings_button)
-        githubButton = view.findViewById(R.id.github_button)
+        privacyButton = view.findViewById(R.id.privacy_button)
         bugsButton = view.findViewById(R.id.bugs_button)
         translateButton = view.findViewById(R.id.translate_button)
 
@@ -38,8 +38,8 @@ class NavigationBottomDialogFragment: BottomSheetDialogFragment() {
             }
         }
 
-        githubButton.setOnClickListener{
-            toURL("https://github.com/peterdpong/mintask-android/")
+        privacyButton.setOnClickListener{
+            toURL("https://peterdpong.github.io/checked/privacy.html")
         }
 
         bugsButton.setOnClickListener {

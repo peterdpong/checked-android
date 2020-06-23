@@ -1,25 +1,26 @@
 <resources>
     <string name="app_name">Checked</string>
-    <string name="version">Version: Beta: 0.1</string>
+    <string name="version">Version: Beta: 0.2</string>
 
     <string name="title">CHECKED</string>
     <string name="addtitle">Add a new task</string>
     <string name="tasktitle">Title</string>
 
     <string name="titleHint">Task Title</string>
-    <string name="dateTitle">CHOOSE TASK DATE</string>
+    <string name="dateTitle">Choose Task Date</string>
     <string name="dateButton">Change Date</string>
     <string name="descHint">Description</string>
+    <string name="priorityTitle">Choose Task Priority</string>
 
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="settings">Settings</string>
     <string name="bugs">Report Bugs</string>
     <string name="translate">Help translate the app</string>
-    <string name="github">App Source Code (Github)</string>
+    <string name="privacy">Privacy Policy</string>
 
     <string name="edittitle">Edit this task</string>
-    <string name="editdatetitle">TASK DATE</string>
+    <string name="editdatetitle">Task Date</string>
 
     <string name="overview">You have %s tasks to finish.</string>
 
