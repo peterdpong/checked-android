@@ -11,6 +11,7 @@
     <string name="dateButton">Change Date</string>
     <string name="descHint">Description</string>
     <string name="priorityTitle">Choose Task Priority</string>
+    <string name="priorityDialog">Task Priority</string>
 
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
@@ -19,10 +20,11 @@
     <string name="translate">Help translate the app</string>
     <string name="privacy">Privacy Policy</string>
 
-    <string name="edittitle">Edit this task</string>
-    <string name="editdatetitle">Task Date</string>
+    <string name="edit_title">Edit this task</string>
+    <string name="edit_date_title">Task Date</string>
 
     <string name="overview">You have %s tasks to finish.</string>
+
 
 
 </resources>

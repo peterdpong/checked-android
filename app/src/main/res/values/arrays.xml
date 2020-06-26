@@ -9,4 +9,10 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="priority_dialog">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 </resources>

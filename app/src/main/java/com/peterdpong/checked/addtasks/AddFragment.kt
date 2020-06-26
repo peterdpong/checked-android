@@ -16,13 +16,16 @@ import com.peterdpong.checked.DatePickerFragment
 import android.text.format.DateFormat
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 import com.peterdpong.checked.R
 import com.peterdpong.checked.listtasks.DATE_FORMAT
+import kotlinx.android.synthetic.main.fragment_add.*
 import java.util.*
 
 private const val DIALOG_DATE = "DateDialog"
@@ -37,6 +40,8 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
     private lateinit var notificationButton: ImageButton
+    private lateinit var prioritySelect: TextView
+    private lateinit var priorityIndicator: ImageView
     private lateinit var addTaskLayout: ConstraintLayout
 
     private val addFragmentViewModel: AddFragmentViewModel by lazy {
@@ -55,6 +60,8 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput = view.findViewById(R.id.titleTextInput)
         descInput = view.findViewById(R.id.descTextInput)
         notificationButton = view.findViewById(R.id.notificationButton)
+        prioritySelect = view.findViewById(R.id.prioritySelect)
+        priorityIndicator = view.findViewById(R.id.priorityIndicator)
         addTaskLayout = view.findViewById(R.id.addtasklayout)
 
         return view
@@ -103,14 +110,14 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput.addTextChangedListener(titleWatcher)
         descInput.addTextChangedListener(descWatcher)
 
-        dateTextView.setOnClickListener{
+        dateTextView.setOnClickListener {
             DatePickerFragment.newInstance(addFragmentViewModel.currentTask.dueDate).apply {
                 setTargetFragment(this@AddFragment, RETURN_DATE)
                 show(this@AddFragment.requireFragmentManager(), DIALOG_DATE)
             }
         }
 
-        notificationButton.setOnClickListener{
+        notificationButton.setOnClickListener {
             addFragmentViewModel.currentTask.notification = !addFragmentViewModel.currentTask.notification
             if(addFragmentViewModel.currentTask.notification){
                 notificationButton.setImageDrawable(
@@ -127,6 +134,20 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
                     )
                 )
             }
+        }
+
+        prioritySelect.setOnClickListener {
+            val itemSelected = addFragmentViewModel.currentTask.priorty;
+            MaterialAlertDialogBuilder(context)
+                .setTitle(resources.getString(R.string.priorityDialog))
+                .setSingleChoiceItems(resources.getStringArray(R.array.priority_dialog), itemSelected) { _, which ->
+                    addFragmentViewModel.currentTask.priorty = which
+                }
+                .setPositiveButton("Ok") {dialog, _ ->
+                    dialog.dismiss()
+                    updateUI()
+                }
+                .show()
         }
 
         saveButton.setOnClickListener {
@@ -154,6 +175,20 @@ class AddFragment : Fragment(), DatePickerFragment.Callbacks {
         titleInput.setText(addFragmentViewModel.currentTask.title)
         descInput.setText(addFragmentViewModel.currentTask.desc)
         dateTextView.setText(DateFormat.format(DATE_FORMAT, addFragmentViewModel.currentTask.dueDate))
+        updatePriority()
     }
 
+    private fun updatePriority() {
+        if(addFragmentViewModel.currentTask.priorty == 0){
+            prioritySelect.setText("Low")
+            priorityIndicator.setImageResource(R.drawable.ic_prio_low)
+        }else if(addFragmentViewModel.currentTask.priorty == 1){
+            prioritySelect.setText("Medium")
+            priorityIndicator.setImageResource(R.drawable.ic_prio_medium)
+        }else {
+            prioritySelect.setText("High")
+            priorityIndicator.setImageResource(R.drawable.ic_prio_high)
+        }
+
+    }
 }

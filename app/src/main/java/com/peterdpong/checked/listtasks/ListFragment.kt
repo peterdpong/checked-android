@@ -157,7 +157,7 @@ class ListFragment : Fragment() {
             this.task = task
             taskTitleView.text = this.task.title
             dateTextView.text = DateFormat.format(DATE_FORMAT, this.task.dueDate)
-            priorityTextView.text = this.task.priorty
+//            priorityTextView.text = this.task.priorty
             itemView.transitionName = task.id.toString()
         }
 
