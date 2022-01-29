@@ -1,5 +1,5 @@
-# Checked Android App (In Beta)
-### A Minimalistic Android Todo app written in Kotlin
+# Checked Android App
+### A Minimalistic Android To-do app written in Kotlin
 #### Kotlin, Room Database and Repository, Material Components, MVVM
 
 <a href='https://play.google.com/store/apps/details?id=com.peterdpong.checked&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
@@ -22,7 +22,7 @@ Current Features
 * Set task due dates 
 * Beautiful Material design and interface
 * Dark Mode (Toggle Coming soon)
-* Works offline, all data stored on your device
+* Data stored offline all locally on your device
 
 
 Planned Features
@@ -34,12 +34,15 @@ Planned Features
 * Dark Mode Toggle/Settings Menu
 * Overview customization
 * Localization
-* Themes - maybe
+* Themes
 
-Known Issues
+Version 0.2 Update
 ---
-To report issues, please email me at peterdpongdev@gmail.com or add an issue to this github page.
-* Edit task animation on close (Fixed in Beta 0.2)
+* Edit task animation fixed on close.
+
+Issues
+---
+To report issues, create an issue [here](https://github.com/peterdpong/checked-android/issues).
 
 
 Help with Translating
